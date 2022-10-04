@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form *ngIf="dS" name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="myUserLabel">Create or edit a student</h2>
+      <div class="mb-3" [hidden]="!editForm.value.id">
+        <label>ID</label>
+        <input type="text" class="form-control" [value]="dS.id" name="id" formControlName="id" readonly />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Code</label>
+        <input type="text" class="form-control" [value]="dS.code" name="code" formControlName="code" />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" [value]="dS.name" name="name" formControlName="name" />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Mark</label>
+        <input type="text" class="form-control" [value]="dS.marks" name="maks" formControlName="marks" />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Class</label>
+        <input type="text" class="form-control" [value]="dS.classes" name="classes" formControlName="classes" />
+      </div>
+
+      <button type="button" class="btn btn-secondary" (click)="previousState()">
+        <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+      </button>
+
+      <button type="submit" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+        <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+      </button>
+    </form>
+
+    <form *ngIf="!dS" name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <div class="mb-3" [hidden]="!editForm.value.id">
+        <label>ID</label>
+        <input type="text" class="form-control" name="id" formControlName="id" readonly />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Code</label>
+        <input type="text" class="form-control" name="code" formControlName="code" />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" name="name" formControlName="name" />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Mark</label>
+        <input type="text" class="form-control" name="maks" formControlName="marks" />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Class</label>
+        <input type="text" class="form-control" name="classes" formControlName="classes" />
+      </div>
+
+      <button type="button" class="btn btn-secondary" (click)="previousState()">
+        <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+      </button>
+
+      <button type="submit" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+        <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+      </button>
+    </form>
+  </div>
+</div>

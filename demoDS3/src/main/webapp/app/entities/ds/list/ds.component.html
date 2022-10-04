@@ -1,0 +1,62 @@
+<div>
+  <h2 id="page-heading" data-cy="DSHeading">
+    <span>STUDENT MANAGER</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" [routerLink]="['./new']"><fa-icon icon="plus"></fa-icon> <span>CREATE</span></button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="dS?.length === 0">
+    <span>No DS found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="dS && dS.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span>ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col">
+            <span>CODE</span>
+          </th>
+
+          <th scope="col">
+            <span>NAME</span>
+          </th>
+
+          <th scope="col">
+            <span>MARK</span>
+          </th>
+
+          <th scope="col">
+            <span>CLASS</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of dS; trackBy: trackId" data-cy="entityTable">
+          <td>{{ item.id }}</td>
+          <td>{{ item.code }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.marks }}</td>
+          <td>{{ item.classes }}</td>
+          <button type="submit" style="background-color: #28a745" [routerLink]="['./edit/', item.id]">
+            <fa-icon icon="pencil-alt"></fa-icon> UPDATE
+          </button>
+          <button type="remove" style="background-color: #dc3545" (click)="delStudent(item.id)">
+            <fa-icon icon="times"></fa-icon> DELETE
+          </button>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
